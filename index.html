@@ -1,221 +1,1013 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studi Kasus GIS & Industri Gas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    <title>Studi Kasus GIS Industri Gas</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7f6;
-      color: #17312b;
-      line-height: 1.6;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    /* NAVBAR */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: white;
-      border-bottom: 1px solid #ddd;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7f6;
+            color: #17312b;
+            line-height: 1.6;
+        }
 
-    .nav-container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* NAVBAR */
+        nav {
+            background: #0b6b5c;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
 
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
-      color: #0b6b5c;
-    }
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 18px;
-    }
+        .logo {
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-size: 14px;
-    }
+        .menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
 
-    .nav-links a:hover {
-      color: #0b6b5c;
-    }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #0b6b5c, #123d36);
-      color: white;
-      padding: 80px 20px;
-    }
+        .menu a:hover {
+            color: #d9e9e4;
+        }
 
-    .hero-container {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      align-items: center;
-    }
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #0b6b5c, #123d36);
+            color: white;
+            padding: 90px 20px;
+        }
 
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.1;
-      margin: 20px 0;
-    }
+        .hero-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
 
-    .hero p {
-      color: #e2f1ed;
-      font-size: 17px;
-    }
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin: 20px 0;
+        }
 
-    .hero-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 30px;
-      border-radius: 20px;
-    }
+        .hero p {
+            font-size: 17px;
+            color: #e4f1ee;
+        }
 
-    .hero-card strong {
-      display: block;
-      font-size: 40px;
-    }
+        .hero-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 30px;
+        }
 
-    /* SECTION */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 65px 20px;
-    }
+        .hero-card h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
 
-    .judul-kecil {
-      color: #0f8a73;
-      font-size: 13px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+        /* SECTION */
+        section {
+            padding: 70px 20px;
+        }
 
-    h2 {
-      font-size: 32px;
-      margin: 8px 0 20px;
-    }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
 
-    h3 {
-      margin-top: 0;
-    }
+        .label {
+            color: #0b6b5c;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-    /* CARD */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+        h2 {
+            font-size: 32px;
+            margin: 10px 0 20px;
+        }
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      border: 1px solid #dce7e3;
-      box-shadow: 0 10px 25px rgba(19,55,47,0.08);
-    }
+        h3 {
+            margin-bottom: 10px;
+        }
 
-    .icon {
-      width: 45px;
-      height: 45px;
-      background: #e5f3ef;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+        /* CARD */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-    /* CASE STUDY */
-    .case {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            border: 1px solid #dce7e3;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
 
-    .flow {
-      display: grid;
-      gap: 12px;
-    }
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: #e3f2ee;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
 
-    .flow-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 15px;
-      background: #fafdfc;
-      border: 1px solid #dce7e3;
-      border-radius: 12px;
-    }
+        .card p {
+            color: #61756f;
+        }
 
-    .flow-number {
-      min-width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background: #0b6b5c;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-    }
+        /* HUBUNGAN IT GIS */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
 
-    /* SKILLS */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-    .skill {
-      background: #edf6f3;
-      color: #0b6b5c;
-      padding: 8px 13px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-    }
+        .skill {
+            background: #eaf5f1;
+            color: #0b6b5c;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
 
-    /* TAB */
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+        /* FLOW */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    .tab {
-      border: 1px solid #ddd;
-      background: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fbfa;
+            border: 1px solid #dce7e3;
+            border-radius: 12px;
+        }
 
-    .tab.active {
-      background: #0b6b5c;
-      color: white;
+        .number {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            background: #0b6b5c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        /* STUDI KASUS */
+        .case-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            margin-top: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            border: 1px solid #dce7e3;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab:hover,
+        .tab.active {
+            background: #0b6b5c;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            margin-top: 35px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 17px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #cde2dc;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 35px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 5px;
+            top: 3px;
+            width: 27px;
+            height: 27px;
+            background: #0b6b5c;
+            border: 5px solid #dceee9;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            color: #0b6b5c;
+        }
+
+        /* QUOTE */
+        .quote {
+            margin-top: 30px;
+            background: #fff9eb;
+            border-left: 5px solid #d9a441;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* KESIMPULAN */
+        .conclusion {
+            background: #e6f3ef;
+            border: 1px solid #cde5dd;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 25px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #123d36;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-container,
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+
+            <div class="logo">
+                GIS × IT
+            </div>
+
+            <ul class="menu">
+                <li><a href="#latar">Latar Belakang</a></li>
+                <li><a href="#hubungan">Hubungan IT & GIS</a></li>
+                <li><a href="#kasus">Studi Kasus</a></li>
+                <li><a href="#skill">Keterampilan</a></li>
+                <li><a href="#karier">Karier</a></li>
+                <li><a href="#kesimpulan">Kesimpulan</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <header class="hero">
+
+        <div class="hero-container">
+
+            <div>
+
+                <p>PROJECT STUDI KASUS</p>
+
+                <h1>
+                    Kontribusi Latar Belakang IT
+                    dalam Industri Gas melalui GIS
+                </h1>
+
+                <p>
+                    Studi kasus mengenai hubungan Teknologi Informasi
+                    dengan Geographic Information System (GIS), kebutuhan
+                    keterampilan, pengalaman profesional, serta peluang
+                    karier di bidang GIS.
+                </p>
+
+            </div>
+
+            <div class="hero-card">
+
+                <h2>IT + GIS</h2>
+
+                <p>
+                    Data → Analisis → Peta → Informasi → Keputusan
+                </p>
+
+                <br>
+
+                <p>
+                    GIS dapat menggabungkan data geospasial dengan
+                    teknologi informasi untuk membantu pekerjaan
+                    survei, analisis, visualisasi, dan pengambilan keputusan.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- LATAR BELAKANG -->
+    <section id="latar">
+
+        <div class="container">
+
+            <p class="label">
+                01 • Latar Belakang
+            </p>
+
+            <h2>
+                Peluang Karier di Bidang GIS
+            </h2>
+
+            <p>
+                Bidang GIS memiliki peluang karier yang luas.
+                GIS tidak hanya berkaitan dengan pembuatan peta,
+                tetapi juga membutuhkan kemampuan mengolah data,
+                database, analisis, pemrograman, dan teknologi
+                informasi.
+            </p>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="icon">🗺️</div>
+
+                    <h3>
+                        Informasi Geospasial
+                    </h3>
+
+                    <p>
+                        Data lokasi dan kondisi suatu wilayah
+                        dapat diolah menjadi peta dan informasi
+                        yang mudah dipahami.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">💻</div>
+
+                    <h3>
+                        Teknologi Informasi
+                    </h3>
+
+                    <p>
+                        Kemampuan IT membantu dalam pengolahan
+                        data, pemrograman, database, dan
+                        pengembangan sistem GIS.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🏭</div>
+
+                    <h3>
+                        Dunia Industri
+                    </h3>
+
+                    <p>
+                        GIS dapat digunakan pada sektor energi,
+                        pertambangan, kehutanan, logistik,
+                        dan pembangunan infrastruktur.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HUBUNGAN IT DAN GIS -->
+    <section id="hubungan">
+
+        <div class="container">
+
+            <p class="label">
+                02 • Hubungan IT dengan GIS
+            </p>
+
+            <h2>
+                Peran Latar Belakang IT dalam GIS
+            </h2>
+
+
+            <div class="two-column">
+
+                <div class="card">
+
+                    <h3>
+                        Kombinasi Kemampuan
+                    </h3>
+
+                    <p>
+                        Mahasiswa dengan latar belakang Informatika
+                        memiliki dasar pemrograman, database,
+                        pengolahan data, dan analisis. Kemampuan
+                        tersebut dapat dikombinasikan dengan
+                        ilmu geospasial untuk membangun sistem GIS.
+                    </p>
+
+                    <div class="skill-list">
+
+                        <span class="skill">Programming</span>
+                        <span class="skill">Database</span>
+                        <span class="skill">Data Analysis</span>
+                        <span class="skill">Geospatial</span>
+                        <span class="skill">Web GIS</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>
+                        Alur Kerja GIS
+                    </h3>
+
+                    <div class="flow">
+
+                        <div class="flow-item">
+                            <div class="number">1</div>
+                            <div>
+                                <b>Pengumpulan Data</b><br>
+                                Data lapangan dan lokasi
+                            </div>
+                        </div>
+
+                        <div class="flow-item">
+                            <div class="number">2</div>
+                            <div>
+                                <b>Penyimpanan Data</b><br>
+                                Database dan data spasial
+                            </div>
+                        </div>
+
+                        <div class="flow-item">
+                            <div class="number">3</div>
+                            <div>
+                                <b>Analisis</b><br>
+                                Analisis data geospasial
+                            </div>
+                        </div>
+
+                        <div class="flow-item">
+                            <div class="number">4</div>
+                            <div>
+                                <b>Visualisasi</b><br>
+                                Peta dan dashboard
+                            </div>
+                        </div>
+
+                        <div class="flow-item">
+                            <div class="number">5</div>
+                            <div>
+                                <b>Keputusan</b><br>
+                                Informasi untuk industri
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDI KASUS -->
+    <section id="kasus">
+
+        <div class="container">
+
+            <p class="label">
+                03 • Studi Kasus
+            </p>
+
+            <h2>
+                Pemanfaatan GIS dalam Industri Gas
+            </h2>
+
+            <p>
+                GIS dapat digunakan untuk membantu pengelolaan
+                informasi lokasi, survei lapangan, analisis
+                data, pemetaan, dan penyajian informasi.
+            </p>
+
+
+            <div class="case-box">
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        onclick="openTab('survey', this)">
+                        Survey
+                    </button>
+
+                    <button
+                        class="tab"
+                        onclick="openTab('analisis', this)">
+                        Analisis
+                    </button>
+
+                    <button
+                        class="tab"
+                        onclick="openTab('hasil', this)">
+                        Hasil
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="survey"
+                    class="tab-content active">
+
+                    <h3>
+                        1. Pengumpulan Data
+                    </h3>
+
+                    <p>
+                        Tim melakukan pengumpulan data lokasi,
+                        kondisi lapangan, infrastruktur, dan
+                        data pendukung lainnya. Teknologi seperti
+                        GPS, perangkat mobile, dan drone dapat
+                        digunakan untuk membantu survei.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="analisis"
+                    class="tab-content">
+
+                    <h3>
+                        2. Pengolahan dan Analisis
+                    </h3>
+
+                    <p>
+                        Data yang diperoleh kemudian disimpan
+                        dan diolah menggunakan database serta
+                        perangkat lunak GIS. Data spasial dapat
+                        dianalisis untuk mengetahui kondisi
+                        wilayah dan kebutuhan proyek.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="hasil"
+                    class="tab-content">
+
+                    <h3>
+                        3. Visualisasi dan Pengambilan Keputusan
+                    </h3>
+
+                    <p>
+                        Hasil analisis dapat ditampilkan dalam
+                        bentuk peta, dashboard, atau aplikasi
+                        berbasis peta sehingga informasi dapat
+                        lebih mudah dipahami dan digunakan.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KETERAMPILAN -->
+    <section id="skill">
+
+        <div class="container">
+
+            <p class="label">
+                04 • Keterampilan
+            </p>
+
+            <h2>
+                Keterampilan yang Dibutuhkan
+            </h2>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="icon">🗄️</div>
+
+                    <h3>
+                        Database & GIS
+                    </h3>
+
+                    <p>
+                        Memahami pengelolaan database dan
+                        perangkat lunak GIS untuk mengolah
+                        data geospasial.
+                    </p>
+
+                    <div class="skill-list">
+
+                        <span class="skill">PostgreSQL</span>
+                        <span class="skill">PostGIS</span>
+                        <span class="skill">SQL</span>
+                        <span class="skill">ArcGIS</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">🐍</div>
+
+                    <h3>
+                        Pemrograman
+                    </h3>
+
+                    <p>
+                        Pemrograman dapat digunakan untuk
+                        otomatisasi pekerjaan, pengembangan
+                        sistem, dan analisis data.
+                    </p>
+
+                    <div class="skill-list">
+
+                        <span class="skill">Python</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">📡</div>
+
+                    <h3>
+                        Teknologi Lapangan
+                    </h3>
+
+                    <p>
+                        Teknologi pengumpulan data dapat
+                        membantu proses survei dan pemetaan
+                        di lapangan.
+                    </p>
+
+                    <div class="skill-list">
+
+                        <span class="skill">GPS</span>
+                        <span class="skill">Drone</span>
+                        <span class="skill">Survey</span>
+                        <span class="skill">Mobile Mapping</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KARIER -->
+    <section id="karier">
+
+        <div class="container">
+
+            <p class="label">
+                05 • Pengalaman & Kontribusi
+            </p>
+
+            <h2>
+                Pengalaman Menuju Dunia Profesional
+            </h2>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Awal Mengenal GIS
+                    </h3>
+
+                    <p>
+                        Ketertarikan terhadap GIS dapat dimulai
+                        sejak masa sekolah dan dikembangkan
+                        melalui pendidikan serta pengalaman.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Pengalaman Surveyor GIS
+                    </h3>
+
+                    <p>
+                        Pengalaman sebagai surveyor membantu
+                        memahami proses pengumpulan data
+                        dan analisis informasi geospasial.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Pengalaman di Dunia Industri
+                    </h3>
+
+                    <p>
+                        Pengalaman dalam analisis lokasi,
+                        pemetaan, dokumen lingkungan,
+                        dan kebutuhan proyek memberikan
+                        pengalaman praktis.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <h3>
+                        Berbagi Pengalaman di Universitas
+                    </h3>
+
+                    <p>
+                        Pengalaman profesional dapat dibagikan
+                        kepada mahasiswa melalui kegiatan
+                        akademik dan proyek sehingga mahasiswa
+                        mengetahui kebutuhan dunia industri.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quote">
+
+                <b>Pelajaran utama:</b>
+
+                Pengalaman praktik, kemampuan teknis,
+                pemahaman kebutuhan industri, dan kemampuan
+                mengikuti perkembangan teknologi dapat
+                membantu mahasiswa mempersiapkan diri
+                menghadapi dunia kerja.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KESIMPULAN -->
+    <section id="kesimpulan">
+
+        <div class="container">
+
+            <p class="label">
+                06 • Kesimpulan
+            </p>
+
+            <h2>
+                Kesimpulan
+            </h2>
+
+            <div class="conclusion">
+
+                <p>
+                    Bidang GIS memiliki peluang karier yang luas
+                    karena membutuhkan kemampuan pengolahan
+                    informasi, database, pemrograman, analisis
+                    data, dan teknologi geospasial.
+                </p>
+
+                <br>
+
+                <p>
+                    Mahasiswa IT dapat mengembangkan kemampuan
+                    tersebut dengan mempelajari perangkat lunak
+                    GIS, database spasial, pemrograman, GPS,
+                    drone, serta teknologi pengolahan data.
+                </p>
+
+                <br>
+
+                <p>
+                    Kerja sama antara dunia akademik dan industri
+                    juga penting agar mahasiswa tidak hanya
+                    memahami teori, tetapi memperoleh pengalaman
+                    melalui proyek nyata dan memahami kebutuhan
+                    profesional.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>
+            STUDI KASUS GIS & INDUSTRI GAS
+        </h3>
+
+        <p>
+            Teknologi Informasi × Geographic Information System
+        </p>
+
+        <p>
+            © 2026 Project Studi Kasus
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function openTab(id, button) {
+
+            // Sembunyikan semua isi tab
+            let contents =
+                document.querySelectorAll(".tab-content");
+
+            contents.forEach(function(content) {
+                content.classList.remove("active");
+            });
+
+
+            // Hapus status aktif dari semua tombol
+            let buttons =
+                document.querySelectorAll(".tab");
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+
+            // Tampilkan tab yang dipilih
+            document
+                .getElementById(id)
+                .classList.add("active");
+
+
+            // Aktifkan tombol yang dipilih
+            button.classList.add("active");
+        }
+
+    </script>
+
+</body>
+</html>
